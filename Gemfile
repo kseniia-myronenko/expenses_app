@@ -16,11 +16,11 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'brakeman', '~> 5.2'
   gem 'bullet', '~> 7.0'
   gem 'bundler-audit', '~> 0.9.0'
   gem 'bundler-leak', '~> 0.3.0'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.2'
   gem 'ffaker', '~> 2.21'
   gem 'lefthook', '~> 0.7.7'
@@ -41,10 +41,10 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  gem 'simplecov', '~> 0.21.2', require: false
   gem 'shoulda-matchers', '~> 5.1'
+  gem 'simplecov', '~> 0.21.2', require: false
   gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

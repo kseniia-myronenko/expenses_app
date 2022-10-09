@@ -5,7 +5,7 @@ FactoryBot.define do
     amount { FFaker::Number.decimal }
     description { FFaker::HipsterIpsum.sentence }
 
-    trait :empty_field do
+    trait :empty_amount do
       amount { nil }
     end
 

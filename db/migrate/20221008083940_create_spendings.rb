@@ -4,6 +4,7 @@ class CreateSpendings < ActiveRecord::Migration[7.0]
       t.integer :amount
       t.text :description
       t.references :category, null: false, foreign_key: true, type: :uuid
+      t.references :user, null: false, foreign_key: true, type: :uuid
 
       t.timestamps
     end
