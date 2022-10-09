@@ -1,33 +1,36 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      messages:
+        confirmation: "Password and confirm password fields doesn't match."
+      models:
+        user:
+          attributes:
+            username:
+              already_exists: 'This username already exists.'
+              too_short: 'Username is too short. Minimum 3 characters are required.'
+              too_long: 'Username is too long. Maximum 50 characters are required.'
+              blank: 'The field is required.'
+            password:
+              invalid: 'Password does not meet minimal requirements. The length should be 8 characters, alphanumeric.'
+              blank: 'The field is required.'
+        category:
+          attributes:
+            heading:
+              blank: "Category can't be blank."
+              already_exists: 'Category with the same name already exists.'
+        spending:
+          attributes:
+            amount:
+              blank: "The field can't be blank."
+  authentication:
+    errors:
+      not_logged_in: 'Please, log in or sign up.'
+      logged_in: 'You are already logged in.'
+      wrong_data: 'Incorrect login or(and) password.'
+    success:
+      logged_in: 'Successfully logged in.'
+      sig_up: 'You are successfully registered.'
+      logged_out: 'You have successfully logged out.'
+    info:
+      sign_up_invitation: 'Not registered yet? Create an account!'
