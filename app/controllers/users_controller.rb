@@ -1,12 +1,12 @@
 class UsersController < AuthorizedController
   skip_before_action :check_authorization, only: %i[new create]
   before_action :set_user, except: %i[new create]
+  before_action :redirect_to_user, only: %i[show edit]
 
   def show; end
 
   def new
     if logged_in?
-      flash[:info] = I18n.t('authentication.info.already_logged_in')
       redirect_to root_path
     else
       @user = User.new
@@ -49,7 +49,11 @@ class UsersController < AuthorizedController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = current_user
+  end
+
+  def user_params
+    params.require(:user).permit(:username, :password, :password_confirmation)
   end
 
   def update_user
@@ -62,7 +66,7 @@ class UsersController < AuthorizedController
     end
   end
 
-  def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation)
+  def redirect_to_user
+    redirect_to @user if User.find(params[:id]) != @user
   end
 end

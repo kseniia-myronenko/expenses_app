@@ -3,44 +3,87 @@ RSpec.describe 'Users', type: :request do
   let(:page) { Nokogiri::HTML.parse(response.body).text }
 
   describe 'GET /show' do
-    before do
-      authenticate(user)
-      get user_path(user)
+    context 'when get show page of current user' do
+      before do
+        authenticate(user)
+        get user_path(user)
+      end
+
+      it 'renders a successful response' do
+        expect(response).to be_successful
+      end
+
+      it 'shows the title' do
+        expect(page).to include(I18n.t('user.show.title'))
+      end
     end
 
-    it 'renders a successful response' do
-      expect(response).to be_successful
-    end
+    context 'when get show page of another user' do
+      let!(:another_user) { create(:user) }
 
-    it 'shows the title' do
-      expect(page).to include(I18n.t('user.show.title'))
+      before do
+        authenticate(user)
+        get user_path(another_user)
+      end
+
+      it 'does not render show page of another user' do
+        expect(response).to redirect_to(user_path(user))
+      end
     end
   end
 
   describe 'GET /new' do
-    before { get signup_path }
+    context 'when new user' do
+      before { get signup_path }
 
-    it 'renders a successful response' do
-      expect(response).to be_successful
+      it 'renders a successful response' do
+        expect(response).to be_successful
+      end
+
+      it 'shows form title' do
+        expect(page).to include(I18n.t('authentication.form.title'))
+      end
     end
 
-    it 'shows form title' do
-      expect(page).to include(I18n.t('authentication.form.title'))
+    context 'when already logged in' do
+      before do
+        authenticate(user)
+        get signup_path
+      end
+
+      it 'redirects to the main page' do
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
 
   describe 'GET /edit' do
-    before do
-      authenticate(user)
-      get edit_user_path(user)
+    context 'when current user' do
+      before do
+        authenticate(user)
+        get edit_user_path(user)
+      end
+
+      it 'render a successful response' do
+        expect(response).to be_successful
+      end
+
+      it 'shows edit page title' do
+        expect(page).to include(I18n.t('user.edit.title'))
+      end
     end
 
-    it 'render a successful response' do
-      expect(response).to be_successful
-    end
+    context 'when get edit page of another user' do
+      let!(:another_user) { create(:user) }
 
-    it 'shows edit page title' do
-      expect(page).to include(I18n.t('user.edit.title'))
+      before do
+        authenticate(user)
+        get edit_user_path(another_user)
+      end
+
+      it 'does not render edit page of another user' do
+        expect(response).to redirect_to(user_path(user))
+      end
     end
   end
 
@@ -247,30 +290,40 @@ RSpec.describe 'Users', type: :request do
     end
 
     context 'with invalid params of password and username' do
-      let(:short_name_params) { { username: 'ab', password: 'newpassword' } }
+      let(:params) { { username: 'ab', password: 'newpassword' } }
 
       it 'does not update account' do
-        patch user_path(user), params: { user: short_name_params }
+        patch user_path(user), params: { user: params }
         user.reload
         expect(user.username).not_to eq('ab')
       end
 
       it 'renders edit page' do
-        patch user_path(user), params: { user: short_name_params }
+        patch user_path(user), params: { user: params }
         user.reload
         expect(response).to be_successful
       end
 
       it 'shows flash danger' do
-        patch user_path(user), params: { user: short_name_params }
+        patch user_path(user), params: { user: params }
         user.reload
         expect(flash[:danger]).to be_present
       end
 
       it 'shows error message' do
-        patch user_path(user), params: { user: short_name_params }
+        patch user_path(user), params: { user: params }
         user.reload
         expect(page).to include(I18n.t('activerecord.errors.models.user.attributes.username.too_short'))
+      end
+    end
+
+    context 'when trying to update another user account' do
+      let!(:another_user) { create(:user) }
+      let(:params) { { username: 'Dave123', password: 'somepassword' } }
+
+      it 'does not update another user' do
+        patch user_path(another_user), params: { user: params }
+        expect(response).to redirect_to(user_path(user))
       end
     end
   end

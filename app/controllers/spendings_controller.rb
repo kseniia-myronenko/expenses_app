@@ -21,9 +21,11 @@ class SpendingsController < AuthorizedController
       redirect_to @spending
     else
       flash[:danger] = @spending.errors.full_messages.to_sentence
-      redirect_to new_spending_path
+      render :new
     end
   end
+
+  def edit; end
 
   def update
     if @spending.update(spending_params)
@@ -31,7 +33,7 @@ class SpendingsController < AuthorizedController
       redirect_to @spending
     else
       flash[:danger] = @spending.errors.full_messages.to_sentence
-      redirect_to edit_spending_path(@spending)
+      render :edit
     end
   end
 

@@ -36,7 +36,6 @@ en:
       log_in: 'Log in'
     errors:
       not_logged_in: 'Please, log in or sign up.'
-      logged_in: 'You are already logged in.'
       wrong_data: 'Incorrect login or(and) password.'
     success:
       logged_in: 'Successfully logged in.'
@@ -55,6 +54,10 @@ en:
       created: 'Spending was successfully created.'
       updated: 'Spending was successfully updated.'
       destroyed: 'Spending was successfully destroyed.'
+    new:
+      title: 'Enter new spending'
+    edit:
+      title: 'Edit spending'
   user:
     success:
       updated: 'Your account was successfully updated.'

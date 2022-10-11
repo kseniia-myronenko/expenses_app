@@ -9,7 +9,7 @@ class BaseController < ApplicationController
   end
 
   def render_not_found
-    head :not_found
+    render file: Rails.public_path.join('404.html')
   end
 
   def logged_in?

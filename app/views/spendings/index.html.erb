@@ -1,1 +1,7 @@
 <h1>Spendings list</h1>
+
+<% @spendings.each do |spending| %>
+  <%= spending.amount %>
+  <%= spending.description %>
+  <%= spending.category.heading %>
+<% end %>

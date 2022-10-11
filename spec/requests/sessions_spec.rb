@@ -16,27 +16,58 @@ RSpec.describe 'Sessions', type: :request do
 
   describe 'POST /create' do
     context 'with valid parameters' do
-      let(:params) { attributes_for(:user) }
-
       it 'redirects to the main page' do
         post login_path(username: user.username, password: 'securepassword')
         expect(response).to redirect_to(root_path)
       end
+
+      it 'renders success flash' do
+        post login_path(username: user.username, password: 'securepassword')
+        expect(flash[:success]).to be_present
+      end
+
+      it 'renders success message' do
+        post login_path(username: user.username, password: 'securepassword')
+        get root_path
+        expect(page).to include(I18n.t('authentication.success.logged_in'))
+      end
     end
 
-    #   context 'with invalid parameters' do
-    #     let(:params) { { username: '' } }
+    context 'with invalid parameters' do
+      it 'renders log in page' do
+        post login_path(username: 'mike', password: 'password')
+        expect(response).to be_successful
+      end
 
-    #     it 'does not create a new User' do
-    #       expect {
-    #         post signup_path, params: { user: params }
-    #       }.not_to change(User, :count)
-    #     end
+      it 'renders danger flash' do
+        post login_path(username: 'mike', password: 'password')
+        expect(flash[:danger]).to be_present
+      end
 
-    #     it 'redirects to the sign up page' do
-    #       post signup_path, params: { user: params }
-    #       expect(response).to redirect_to(signup_path)
-    #     end
-    #   end
+      it 'shows error message' do
+        post login_path(username: 'mike', password: 'password')
+        expect(page).to include(I18n.t('authentication.errors.wrong_data'))
+      end
+    end
+  end
+
+  describe 'DELETE /destroy' do
+    before { authenticate(user) }
+
+    it 'redirects to the sign up page' do
+      get logout_path(user)
+      expect(response).to redirect_to(signup_path)
+    end
+
+    it 'renders success flash' do
+      get logout_path(user)
+      expect(flash[:success]).to be_present
+    end
+
+    it 'renders success message' do
+      get logout_path(user)
+      get signup_path
+      expect(page).to include(I18n.t('authentication.success.logged_out'))
+    end
   end
 end
