@@ -7,13 +7,13 @@ en:
         user:
           attributes:
             username:
-              already_exists: 'This username already exists.'
-              too_short: 'Username is too short. Minimum 3 characters are required.'
-              too_long: 'Username is too long. Maximum 50 characters are required.'
+              already_exists: 'already exists.'
+              too_short: 'is too short. Minimum 3 characters are required.'
+              too_long: 'is too long. Maximum 50 characters are required.'
               blank: 'The field is required.'
             password:
-              invalid: 'Password does not meet minimal requirements. The length should be 8 characters, alphanumeric.'
-              blank: 'The field is required.'
+              invalid: 'does not meet minimal requirements. The length should be 8 characters, alphanumeric.'
+              blank: 'is required.'
         category:
           attributes:
             heading:
@@ -24,13 +24,42 @@ en:
             amount:
               blank: "The field can't be blank."
   authentication:
+    form:
+      title: 'Spending counting app'
+      subtitle: 'Create an account with form below'
+      username: 'Username'
+      password: 'Password'
+      password_confirmation: 'Password confirmation'
+      create_account_button: 'Create an account'
+      have_an_account: 'Have an account'
+      sign_in: 'Sign in'
+      log_in: 'Log in'
     errors:
       not_logged_in: 'Please, log in or sign up.'
       logged_in: 'You are already logged in.'
       wrong_data: 'Incorrect login or(and) password.'
     success:
       logged_in: 'Successfully logged in.'
-      sig_up: 'You are successfully registered.'
+      sign_up: 'You have successfully registered.'
       logged_out: 'You have successfully logged out.'
     info:
       sign_up_invitation: 'Not registered yet? Create an account!'
+      already_logged_in: 'You are already logged in.'
+  category:
+    success:
+      created: 'Category was successfully created.'
+      updated: 'Category was successfully updated.'
+      destroyed: 'Category was successfully destroyed.'
+  spending:
+    success:
+      created: 'Spending was successfully created.'
+      updated: 'Spending was successfully updated.'
+      destroyed: 'Spending was successfully destroyed.'
+  user:
+    success:
+      updated: 'Your account was successfully updated.'
+      destroyed: 'Your account was successfully destroyed.'
+    show:
+      title: 'My account'
+    edit:
+      title: 'Edit profile'

@@ -6,6 +6,7 @@ gem 'rails', '~> 7.0.3'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootstrap', '~> 5.2.1'
 gem 'pg', '~> 1.4', '>= 1.4.3'
 gem 'psych', '< 4'
 gem 'puma', '~> 4.1'
@@ -20,10 +21,10 @@ group :development, :test do
   gem 'bullet', '~> 7.0'
   gem 'bundler-audit', '~> 0.9.0'
   gem 'bundler-leak', '~> 0.3.0'
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.2'
   gem 'ffaker', '~> 2.21'
   gem 'lefthook', '~> 0.7.7'
+  gem 'pry-rails', '~> 0.3.9'
   gem 'rubocop', '~> 1.25'
   gem 'rubocop-performance', '~> 1.13'
   gem 'rubocop-rails', '~> 2.13'

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EspensesAppNew</title>
+    <title>Expenses App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,35 @@
   </head>
 
   <body>
+  <div class="nav">
+      <ul>
+        <% if session[:user_id] %>
+          <li>Hi, <%= current_user.username %></li>
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Categories', categories_path %></li>
+          <li class="right-nav">
+            <%= link_to 'My account', user_path(current_user) %>
+          </li>
+          <li class="right-nav">
+            <%= link_to 'Logout', logout_path, method: :delete %>
+          </li>
+        <% else %>
+          <li class="right-nav">
+            <%= link_to 'Login', login_path %>
+          </li>
+          <li class="right-nav">
+            <%= link_to 'Sign Up', signup_path %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <% flash.each do |type, msg| %>
+      <div class="alert <%= bootstrap_class_for(type) %>" role="alert">
+        <%= msg %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
