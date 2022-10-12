@@ -368,6 +368,26 @@ RSpec.describe 'Spendings', type: :request do
         expect(response).to render_template(:edit)
       end
     end
+
+    context 'when unregistered' do
+      let(:params) do
+        { amount: '200',
+          category_id: create(:category).id,
+          user_id: user.id,
+          description: 'For animals.' }
+      end
+
+      it 'redirects to the signup page' do
+        put user_spending_path(user, spending), params: { spending: params }
+        expect(response).to redirect_to(signup_path)
+      end
+
+      it 'does not update spending' do
+        put user_spending_path(user, spending), params: { spending: params }
+        spending.reload
+        expect(spending.amount).to eq(300)
+      end
+    end
   end
 
   describe 'DELETE /destroy' do
@@ -383,6 +403,17 @@ RSpec.describe 'Spendings', type: :request do
       it 'redirects to the all spendings page' do
         delete user_spending_path(user, spending)
         expect(response).to redirect_to(user_spendings_path)
+      end
+
+      it 'renders informational flash' do
+        delete user_spending_path(user, spending)
+        expect(flash[:info]).to be_present
+      end
+
+      it 'renders info message' do
+        delete user_spending_path(user, spending)
+        follow_redirect!
+        expect(response.body).to include(I18n.t('spending.success.destroyed'))
       end
     end
 
