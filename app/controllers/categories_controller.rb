@@ -19,7 +19,7 @@ class CategoriesController < AuthorizedController
       redirect_to @category
     else
       flash[:danger] = @category.errors.full_messages.to_sentence
-      redirect_to new_category_path
+      render :new
     end
   end
 
@@ -29,7 +29,7 @@ class CategoriesController < AuthorizedController
       redirect_to @category
     else
       flash[:danger] = @category.errors.full_messages.to_sentence
-      redirect_to edit_category_path
+      render :edit
     end
   end
 

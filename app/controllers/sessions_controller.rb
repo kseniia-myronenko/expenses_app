@@ -7,6 +7,7 @@ class SessionsController < BaseController
     if set_user&.authenticate(params[:password])
       define_session(set_user)
       redirect_to root_path
+      flash[:success] = I18n.t('authentication.success.logged_in')
     else
       flash[:danger] = I18n.t('authentication.errors.wrong_data')
       render :new
@@ -27,6 +28,5 @@ class SessionsController < BaseController
 
   def define_session(set_user)
     session[:user_id] = set_user.id
-    flash[:success] = I18n.t('authentication.success.logged_in')
   end
 end

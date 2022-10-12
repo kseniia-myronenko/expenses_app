@@ -5,12 +5,22 @@ RSpec.describe 'Sessions', type: :request do
   describe 'GET /new' do
     before { get login_path }
 
-    it 'renders a successful response' do
-      expect(response).to be_successful
+    context 'when unregistered' do
+      it 'renders a successful response' do
+        expect(response).to be_successful
+      end
+
+      it 'shows form title' do
+        expect(page).to include(I18n.t('authentication.form.log_in'))
+      end
     end
 
-    it 'shows form title' do
-      expect(page).to include(I18n.t('authentication.form.log_in'))
+    context 'when logged in to the system' do
+      before { authenticate(user) }
+
+      it 'redirects to the root_path' do
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
 
@@ -28,7 +38,7 @@ RSpec.describe 'Sessions', type: :request do
 
       it 'renders success message' do
         post login_path(username: user.username, password: 'securepassword')
-        get root_path
+        follow_redirect!
         expect(page).to include(I18n.t('authentication.success.logged_in'))
       end
     end
@@ -55,18 +65,18 @@ RSpec.describe 'Sessions', type: :request do
     before { authenticate(user) }
 
     it 'redirects to the sign up page' do
-      get logout_path(user)
+      delete logout_path(user)
       expect(response).to redirect_to(signup_path)
     end
 
     it 'renders success flash' do
-      get logout_path(user)
+      delete logout_path(user)
       expect(flash[:success]).to be_present
     end
 
     it 'renders success message' do
-      get logout_path(user)
-      get signup_path
+      delete logout_path(user)
+      follow_redirect!
       expect(page).to include(I18n.t('authentication.success.logged_out'))
     end
   end

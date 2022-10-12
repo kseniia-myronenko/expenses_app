@@ -1,7 +1,7 @@
 class UsersController < AuthorizedController
   skip_before_action :check_authorization, only: %i[new create]
   before_action :set_user, except: %i[new create]
-  before_action :redirect_to_user, only: %i[show edit]
+  before_action :redirect_to_user, except: %i[new create]
 
   def show; end
 
@@ -33,10 +33,12 @@ class UsersController < AuthorizedController
   def edit; end
 
   def update
-    if session[:user_id] == @user.id
-      update_user
-    else
+    if @user.update(user_params)
       redirect_to @user
+      flash[:success] = I18n.t('user.success.updated')
+    else
+      flash[:danger] = @user.errors.full_messages.to_sentence
+      render :edit
     end
   end
 
@@ -54,16 +56,6 @@ class UsersController < AuthorizedController
 
   def user_params
     params.require(:user).permit(:username, :password, :password_confirmation)
-  end
-
-  def update_user
-    if @user.update(user_params)
-      redirect_to @user
-      flash[:success] = I18n.t('user.success.updated')
-    else
-      flash[:danger] = @user.errors.full_messages.to_sentence
-      render :edit
-    end
   end
 
   def redirect_to_user

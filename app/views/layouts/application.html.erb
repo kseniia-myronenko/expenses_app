@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "true" %>
     <%= javascript_tag %>
   </head>
 
@@ -21,7 +20,7 @@
             <%= link_to 'My account', user_path(current_user) %>
           </li>
           <li class="right-nav">
-            <%= link_to 'Logout', logout_path, method: :delete %>
+            <%= button_to 'Logout', logout_path, method: :delete %>
           </li>
         <% else %>
           <li class="right-nav">

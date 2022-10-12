@@ -104,13 +104,13 @@ RSpec.describe 'Users', type: :request do
 
       it 'renders success flash' do
         post signup_path, params: { user: params }
-        get root_path
+        follow_redirect!
         expect(flash[:success]).to be_present
       end
 
       it 'renders success message' do
         post signup_path, params: { user: params }
-        get root_path
+        follow_redirect!
         expect(page).to include(I18n.t('authentication.success.sign_up'))
       end
     end
@@ -298,7 +298,7 @@ RSpec.describe 'Users', type: :request do
         expect(user.username).not_to eq('ab')
       end
 
-      it 'renders edit page' do
+      it 'renders success response' do
         patch user_path(user), params: { user: params }
         user.reload
         expect(response).to be_successful
@@ -314,6 +314,11 @@ RSpec.describe 'Users', type: :request do
         patch user_path(user), params: { user: params }
         user.reload
         expect(page).to include(I18n.t('activerecord.errors.models.user.attributes.username.too_short'))
+      end
+
+      it 'renders edit page' do
+        patch user_path(user), params: { user: params }
+        expect(response).to render_template(:edit)
       end
     end
 

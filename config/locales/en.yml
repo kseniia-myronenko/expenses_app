@@ -17,12 +17,12 @@ en:
         category:
           attributes:
             heading:
-              blank: "Category can't be blank."
-              already_exists: 'Category with the same name already exists.'
+              blank: "can not be blank."
+              already_exists: 'with the same name already exists.'
         spending:
           attributes:
             amount:
-              blank: "The field can't be blank."
+              blank: "can not be blank."
   authentication:
     form:
       title: 'Spending counting app'
@@ -48,12 +48,24 @@ en:
     success:
       created: 'Category was successfully created.'
       updated: 'Category was successfully updated.'
-      destroyed: 'Category was successfully destroyed.'
+      destroyed: 'Category was destroyed.'
+    links:
+      edit: 'Edit category'
+      destroy: 'Delete category'
+      show: 'Show category'
+    new:
+      title: 'Enter new category'
+    edit:
+      title: 'Edit category'
   spending:
     success:
       created: 'Spending was successfully created.'
       updated: 'Spending was successfully updated.'
-      destroyed: 'Spending was successfully destroyed.'
+      destroyed: 'Spending was destroyed.'
+    links:
+      edit: 'Edit spending'
+      destroy: 'Delete spending'
+      show: 'Show spending'
     new:
       title: 'Enter new spending'
     edit:
@@ -61,8 +73,10 @@ en:
   user:
     success:
       updated: 'Your account was successfully updated.'
-      destroyed: 'Your account was successfully destroyed.'
+      destroyed: 'Your account was destroyed.'
     show:
       title: 'My account'
     edit:
       title: 'Edit profile'
+  general:
+    back: 'Back'
