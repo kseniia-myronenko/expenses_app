@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :category do
     association :user, factory: :user
-    heading { FFaker::BaconIpsum.word }
+    heading { FFaker::Name.first_name }
     body { FFaker::HipsterIpsum.sentence }
     display { FFaker::Boolean.random }
 

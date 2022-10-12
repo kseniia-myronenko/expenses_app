@@ -1,0 +1,9 @@
+<% if @spending.user_id == current_user.id %>
+  <%= @spending.amount %><br />
+  <%= @spending.description %><br />
+  <%= @spending.category.heading %><br />
+
+  <%= link_to I18n.t('spending.links.edit'), edit_user_spending_path(current_user, @spending) %><br />
+  <%= button_to I18n.t('spending.links.destroy'), user_spending_path(current_user, @spending), method: :delete %>
+<% end %>
+<p><<<%= link_to I18n.t('general.back'), user_spendings_path(current_user) %></p>

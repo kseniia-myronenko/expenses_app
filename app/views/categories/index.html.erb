@@ -1,0 +1,12 @@
+<h1>Categories list</h1>
+
+<% @categories.each do |category| %>
+  <h3><%= category.heading %></h3>
+  <p><%= category.body %></p>
+
+  <%= link_to I18n.t('category.links.show'), category_path(category) %><br />
+  <%= link_to I18n.t('category.links.edit'), edit_category_path(category) %><br />
+  <%= button_to I18n.t('category.links.destroy'), category_path(category), method: :delete %>
+<% end %>
+
+<p><<<%= link_to I18n.t('general.back'), root_path %></p>

@@ -1,0 +1,13 @@
+<h1>Spendings list</h1>
+
+<% @spendings.each do |spending| %>
+  <%= spending.amount %><br />
+  <%= spending.description %><br />
+  <%= spending.category.heading %><br /><br />
+
+  <% if spending.user_id == current_user.id %>
+    <%= link_to I18n.t('spending.links.show'), user_spending_path(current_user, spending) %>
+    <%= link_to I18n.t('spending.links.edit'), edit_user_spending_path(current_user, spending) %>
+    <%= button_to I18n.t('spending.links.destroy'), user_spending_path(current_user, spending), method: :delete %>
+  <% end %>
+<% end %>
