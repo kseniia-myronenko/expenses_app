@@ -4,7 +4,8 @@ class SpendingsController < AuthorizedController
 
   def index
     user = User.find(params[:user_id])
-    @spendings = user.spendings.all
+    @spendings = SpendingFilterService.call(params, user)
+    @total = @spendings.sum(&:amount)
   end
 
   def show; end

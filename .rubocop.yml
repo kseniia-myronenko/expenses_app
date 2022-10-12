@@ -81,3 +81,7 @@ RSpec/NestedGroups:
 
 RSpec/MultipleMemoizedHelpers:
   Max: 10
+
+Lint/MissingSuper:
+  Exclude:
+    - app/services/**/*

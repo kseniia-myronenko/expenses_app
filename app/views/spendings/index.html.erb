@@ -1,5 +1,5 @@
 <h1>Spendings list</h1>
-
+<p>Total amount: <%= @total %><br />
 <% @spendings.each do |spending| %>
   <%= spending.amount %><br />
   <%= spending.description %><br />
