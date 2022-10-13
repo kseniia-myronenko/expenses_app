@@ -3,8 +3,11 @@ class SpendingsController < AuthorizedController
   before_action :not_found, except: :index
 
   def index
-    user = User.find(params[:user_id])
-    @spendings = user.spendings.all
+    @user = User.find(params[:user_id])
+    @spendings = Spendings::FilterService.call(params, @user)
+    @spendings = Spendings::SortService.call(@spendings, params)
+    @categories = @user.categories.pluck(:heading)
+    @total = @spendings.sum(&:amount)
   end
 
   def show; end
