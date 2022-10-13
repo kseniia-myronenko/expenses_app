@@ -51,9 +51,9 @@ en:
       updated: 'Category was successfully updated.'
       destroyed: 'Category was destroyed.'
     links:
-      edit: 'Edit category'
-      destroy: 'Delete category'
-      show: 'Show category'
+      edit: 'Edit'
+      destroy: 'Delete'
+      show: 'Show'
     new:
       title: 'Enter new category'
     edit:
@@ -81,3 +81,4 @@ en:
       title: 'Edit profile'
   general:
     back: 'Back'
+    to_categories_list: 'To categories list'

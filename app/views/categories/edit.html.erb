@@ -1,2 +1,9 @@
-<h1 class="text-secondary"><%= I18n.t('category.edit.title') %></h1>
-<%= link_to I18n.t('general.back'), user_spendings_path(current_user) %>
+<h1 class="text-secondary mb-4"><%= I18n.t('category.edit.title') %></h1>
+<%= link_to I18n.t('general.back'), category_path(@category), class: 'btn btn-secondary mb-4' %>
+
+<div class="col-6">
+  <%= form_with(model: @category) do |f| %>
+    <%= render(partial: 'form', locals: { f: f }) %>
+    <%= f.submit 'Update category', class: "btn btn-primary" %>
+  <% end %>
+</div>

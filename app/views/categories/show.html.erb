@@ -1,8 +1,12 @@
-<h1><%= @category.heading %></h1>
-<p><%= @category.body %></p>
-<p><%= @category.display %></p>
+<div class="card mb-4" style="width: 75%;">
+  <div class="card-body">
+    <h1 class="card-title"><%= @category.heading %></h1>
+    <p class="card-text"><%= @category.body %></p>
+  </div>
+</div>
 
-<%= link_to I18n.t('category.links.show'), category_path(@category) %><br />
-<%= link_to I18n.t('category.links.edit'), edit_category_path(@category) %><br />
-<%= button_to I18n.t('category.links.destroy'), category_path(@category), method: :delete %>
-<%= link_to I18n.t('general.back'), categories_path %>
+<div class="d-flex">
+  <%= link_to I18n.t('general.back'), categories_path, class: 'btn btn-secondary', style: "margin-right: 5px;" %>
+  <%= link_to I18n.t('category.links.edit'), edit_category_path(@category), class: 'btn btn-outline-primary', style: "margin-right: 5px;" %>
+  <%= button_to I18n.t('category.links.destroy'), category_path(@category), method: :delete, class: 'btn btn-outline-danger' %>
+</div>
