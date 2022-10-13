@@ -1,5 +1,23 @@
 <h1>Spendings list</h1>
 <p>Total amount: <%= @total %><br />
+
+<%= form_with url: user_spendings_path(@user), method: :get do |f| %>
+  <div>
+    <%= f.label :category %>
+    <%= f.select :category, options_for_select(@categories), include_blank: true %>
+  </div>
+  <div>
+    <p><%= f.label :min, 'Min amount' %> - <%= f.number_field :min, min: 0 %></p>
+    <p><%= f.label :max,'Max amount' %> - <%= f.number_field :max, min: 0 %></p>
+  </div>
+  <div>
+    <p><%= f.label :sort, 'Sort order by amount' %> - <%= f.select :sort, options_for_select(['asc', 'desc']) %></p>
+  </div>
+  <%= f.submit 'Filter' %>
+<% end %>
+
+<%= link_to 'Reset filter', user_spendings_path(@user) %><br /><br />
+
 <% @spendings.each do |spending| %>
   <%= spending.amount %><br />
   <%= spending.description %><br />

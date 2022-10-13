@@ -18,6 +18,10 @@ RSpec.describe 'Spendings', type: :request do
         expect(response).to be_successful
       end
 
+      it 'renders right template' do
+        expect(response).to render_template(:index)
+      end
+
       it 'shows amounts list' do
         spending_list.map { |item| expect(page).to include(item.amount.to_s) }
       end
@@ -92,6 +96,10 @@ RSpec.describe 'Spendings', type: :request do
         expect(response).to be_successful
       end
 
+      it 'renders right template' do
+        expect(response).to render_template(:show)
+      end
+
       it 'shows the amount' do
         expect(page).to include(spending.amount.to_s)
       end
@@ -140,6 +148,10 @@ RSpec.describe 'Spendings', type: :request do
 
       it 'renders a successful response' do
         expect(response).to be_successful
+      end
+
+      it 'renders right template' do
+        expect(response).to render_template(:new)
       end
 
       it 'shows the title' do
