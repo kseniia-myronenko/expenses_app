@@ -6,13 +6,12 @@ gem 'rails', '~> 7.0.3'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'bootstrap', '~> 5.2.1'
+gem 'bootstrap', '~> 5.2', '>= 5.2.1'
 gem 'pg', '~> 1.4', '>= 1.4.3'
 gem 'psych', '< 4'
 gem 'puma', '~> 4.1'
 gem 'rspec-rails', '~> 6.0.0.rc1'
 gem 'sass-rails', '>= 6'
-gem 'simple_form', '~> 5.1'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 
@@ -40,12 +39,9 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
-  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.1'
   gem 'simplecov', '~> 0.21.2', require: false
-  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

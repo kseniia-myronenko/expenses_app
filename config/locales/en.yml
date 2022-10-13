@@ -31,9 +31,10 @@ en:
       password: 'Password'
       password_confirmation: 'Password confirmation'
       create_account_button: 'Create an account'
-      have_an_account: 'Have an account'
-      sign_in: 'Sign in'
+      have_an_account: 'Have an account?'
       log_in: 'Log in'
+      new_user: 'New user?'
+      sign_up: 'Sign up now!'
     errors:
       not_logged_in: 'Please, log in or sign up.'
       wrong_data: 'Incorrect login or(and) password.'

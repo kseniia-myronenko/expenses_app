@@ -1,4 +1,6 @@
-<h1>Spendings list</h1>
+<h1 class="text-secondary">Spendings list</h1>
+<%= link_to I18n.t('general.back'), root_path %>
+
 <p>Total amount: <%= @total %><br />
 
 <%= form_with url: user_spendings_path(@user), method: :get do |f| %>
