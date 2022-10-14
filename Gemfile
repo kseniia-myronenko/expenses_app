@@ -13,7 +13,6 @@ gem 'puma', '~> 4.1'
 gem 'rspec-rails', '~> 6.0.0.rc1'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
-gem 'webpacker', '~> 6.0.0.rc.6'
 
 group :development, :test do
   gem 'brakeman', '~> 5.2'
