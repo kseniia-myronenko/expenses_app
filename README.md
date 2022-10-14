@@ -32,10 +32,13 @@ rails db:seed
 </ol>
 <h2>Use case</h2>
 <ol>
-<li>Start server<pre>rails s</pre></li>
-<li>Visit <pre>localhost:3000</pre></li>
-<li>If you want to watch account with predefined data, run <pre>rails db:seeds</pre>. Login to the system with credentials <pre> Dave19</pre> ans password <pre>pa$$word</pre>. You can also sign up to the system, but there will be no predefined categories as there is possibility for users to create their own categories.</li>
-<li>On the main page you will see three blocks such as "Create spending", "Watch all spendings" and "Create category". User can add descriptions to the spendings and categories.</li>
+<li>If you want to watch account with predefined data, run <code>rails db:seed</code>.<br> Login to the system with credentials  <code>Dave19</code> ans password <code>pa$$word</code>. You can also sign up to the system with your own credentials, but there will be no predefined categories as there is possibility for users to create their own categories.</li>
+<li>Start server  <code>rails s</code></li>
+<li>Go to <code>localhost:3000</code></li>
+<li>Log in or sign up to the system.</li>
+<li>On the main page you will see three blocks such as "Create spending", "Watch all spendings" and "Create category".</li>
+<li>If you are not logged in with <code>Dave19</code>, you should create at least 1 category first. You can do it on <code>localhost:3000/categories</code> page.</li>
+<li>Create some spendings by visiting <code>Create spending</code> link in menu or using block from the main page.</li>
 <li>On the all spengings page <code>localhost:3000/users/:user_id/spendings</code> you can sort spendings by different attributes. Also you can share this page with registered users.<br>
 Note, that after push "Filter" button you will see the result of request, but params will not be saved to the fields.</li>
 </ol>
