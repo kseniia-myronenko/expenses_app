@@ -18,7 +18,7 @@ class CategoriesController < AuthorizedController
       flash[:info] = I18n.t('category.success.created')
       redirect_to @category
     else
-      flash[:danger] = @category.errors.full_messages.to_sentence
+      flash.now[:danger] = @category.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -28,7 +28,7 @@ class CategoriesController < AuthorizedController
       flash[:info] = I18n.t('category.success.updated')
       redirect_to @category
     else
-      flash[:danger] = @category.errors.full_messages.to_sentence
+      flash.now[:danger] = @category.errors.full_messages.to_sentence
       render :edit
     end
   end

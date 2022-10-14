@@ -1,7 +1,7 @@
 class SpendingsController < AuthorizedController
   before_action :set_spending, except: %i[index new create]
   before_action :not_found, except: :index
-  before_action :set_categories, only: %i[new edit]
+  before_action :set_categories, only: %i[new edit update create]
 
   def index
     @user = User.find(params[:user_id])
@@ -26,7 +26,7 @@ class SpendingsController < AuthorizedController
       flash[:info] = I18n.t('spending.success.created')
       redirect_to user_spending_path(current_user, @spending)
     else
-      flash[:danger] = @spending.errors.full_messages.to_sentence
+      flash.now[:danger] = @spending.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -40,7 +40,7 @@ class SpendingsController < AuthorizedController
       flash[:info] = I18n.t('spending.success.updated')
       redirect_to user_spending_path(current_user, @spending)
     else
-      flash[:danger] = @spending.errors.full_messages.to_sentence
+      flash.now[:danger] = @spending.errors.full_messages.to_sentence
       render :edit
     end
   end

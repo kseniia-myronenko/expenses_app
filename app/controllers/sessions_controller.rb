@@ -9,7 +9,7 @@ class SessionsController < BaseController
       redirect_to root_path
       flash[:success] = I18n.t('authentication.success.logged_in')
     else
-      flash[:danger] = I18n.t('authentication.errors.wrong_data')
+      flash.now[:danger] = I18n.t('authentication.errors.wrong_data')
       render :new
     end
   end

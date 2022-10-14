@@ -14,7 +14,7 @@
     <div class="form-group mb-2">
      <% if @categories %>
       <p class="text-secondary">Select category:</p>
-      <%= f.select :category_id, options_for_select(@categories), {}, { class: 'form-control' } %>
+      <%= f.select :category_id, options_for_select(@categories), {}, { class: 'form-select' } %>
      <% else %>
       <p class="text-danger">You need to create at least one category first.</p>
     <% end %>

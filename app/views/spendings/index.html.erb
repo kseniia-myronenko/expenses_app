@@ -1,4 +1,4 @@
-<h1 class="text-secondary mb-4">Spendings list</h1>
+<h1 class="text-secondary mb-4"><%= @user.username %>'s Spendings List</h1>
 
 <p class="mb-5"><span class="shadow border border-primary rounded-bottom p-2">Total amount: <b class="text-primary"><%= @total %></b></span></p>
 
@@ -6,14 +6,14 @@
 <%= form_with url: user_spendings_path(@user), method: :get do |f| %>
   <div class="mb-4">
     <%= f.label :category, 'Category:' %>
-    <%= f.select :category, options_for_select(@categories), { include_blank: true }, { class: 'form-control', style: "max-width: 52%;" } %>
+    <%= f.select :category, options_for_select(@categories), { include_blank: true }, { class: 'form-select', style: "max-width: 52%;" } %>
   </div>
   <div class="d-flex">
     <p style="margin-right: 10px; max-width: 25%;"><%= f.label :min, 'Min amount' %>: <%= f.number_field :min, min: 0, class: 'form-control' %></p>
     <p style="max-width: 25%;"><%= f.label :max,'Max amount' %>: <%= f.number_field :max, min: 0, class: 'form-control' %></p>
   </div>
   <div class="mb-4">
-    <p><%= f.label :sort, 'Sort order by amount' %>: <%= f.select :sort, options_for_select(['asc', 'desc']), { include_blank: true }, { class: 'form-control', style: "max-width: 25%;" } %></p>
+    <p><%= f.label :sort, 'Sort order by amount' %>: <%= f.select :sort, options_for_select(['asc', 'desc']), {}, { class: 'form-select', style: "max-width: 25%;" } %></p>
   </div>
   <div class="d-flex">
     <%= f.submit 'Filter', class: 'btn btn-outline-primary', style: "margin-right: 10px;" %>
@@ -28,7 +28,9 @@
       <th class="text-center">Amount</th>
       <th class="text-center">Description</th>
       <th class="text-center">Category</th>
+    <% if @user.id == current_user.id %>
       <th class="text-center">Actions</th>
+    <% end %>
     </tr>
   </thead>
   <tbody>
@@ -37,13 +39,13 @@
       <td class="text-center"><h5 style="padding: 10px;"><%= spending.amount %></h5></td>
       <td><%= spending.description %></td>
       <td class="text-center"><%= spending.category.heading %></td>
-      <td>
       <% if spending.user_id == current_user.id %>
+      <td>
         <%= link_to I18n.t('spending.links.show'), user_spending_path(current_user, spending), class: 'btn btn-outline-secondary mb-2', style: 'display: block;' %>
         <%= link_to I18n.t('spending.links.edit'), edit_user_spending_path(current_user, spending), class: 'btn btn-outline-secondary mb-2', style: 'display: block;'  %>
         <%= button_to I18n.t('spending.links.destroy'), user_spending_path(current_user, spending), method: :delete, class: 'btn btn-outline-danger', style: 'min-width: 100%;' %>
-      <% end %>
       </td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>
