@@ -32,8 +32,8 @@ rails db:seed
 </ol>
 <h2>Use case</h2>
 <ol>
-<li>If you want to watch account with predefined data, run <code>rails db:seed</code>. Login to the system with credentials <code> Dave19</code> ans password <code>pa$$word</code>. You can also sign up to the system with your own credentials, but there will be no predefined categories as there is possibility for users to create their own categories.</li>
-<li>Start server<code>rails s</code></li>
+<li>If you want to watch account with predefined data, run <code>rails db:seed</code>.<br> Login to the system with credentials  <code>Dave19</code> ans password <code>pa$$word</code>. You can also sign up to the system with your own credentials, but there will be no predefined categories as there is possibility for users to create their own categories.</li>
+<li>Start server  <code>rails s</code></li>
 <li>On the main page you will see three blocks such as "Create spending", "Watch all spendings" and "Create category". User can add descriptions to the spendings and categories.</li>
 <li>On the all spengings page <code>localhost:3000/users/:user_id/spendings</code> you can sort spendings by different attributes. Also you can share this page with registered users.<br>
 Note, that after push "Filter" button you will see the result of request, but params will not be saved to the fields.</li>
