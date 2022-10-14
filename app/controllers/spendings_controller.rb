@@ -1,13 +1,13 @@
 class SpendingsController < AuthorizedController
+  skip_before_action :check_user, only: :index
   before_action :set_spending, except: %i[index new create]
-  before_action :not_found, except: :index
   before_action :set_categories, only: %i[new edit update create]
 
   def index
     @user = User.find(params[:user_id])
+    @categories = @user.categories.pluck(:heading)
     @spendings = Spendings::FilterService.call(params, @user)
     @spendings = Spendings::SortService.call(@spendings, params)
-    @categories = @user.categories.pluck(:heading)
     @total = @spendings.sum(&:amount)
   end
 
@@ -59,10 +59,6 @@ class SpendingsController < AuthorizedController
 
   def set_spending
     @spending = current_user.spendings.find(params[:id])
-  end
-
-  def not_found
-    render_not_found if User.find(params[:user_id]) != current_user
   end
 
   def set_categories

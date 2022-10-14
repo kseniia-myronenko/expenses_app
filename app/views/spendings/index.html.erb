@@ -37,7 +37,7 @@
     <% @spendings.each do |spending| %>
     <tr>
       <td class="text-center"><h5 style="padding: 10px;"><%= spending.amount %></h5></td>
-      <td><%= spending.description %></td>
+      <td style="width: 50%;"><%= spending.description %></td>
       <td class="text-center"><%= spending.category.heading %></td>
       <% if spending.user_id == current_user.id %>
       <td>
