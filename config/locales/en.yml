@@ -1,33 +1,84 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      messages:
+        confirmation: "Password and confirm password fields doesn't match."
+      models:
+        user:
+          attributes:
+            username:
+              already_exists: 'already exists.'
+              too_short: 'is too short. Minimum 3 characters are required.'
+              too_long: 'is too long. Maximum 50 characters are required.'
+              blank: 'The field is required.'
+            password:
+              invalid: 'does not meet minimal requirements. The length should be 8 characters, alphanumeric.'
+              blank: 'is required.'
+        category:
+          attributes:
+            heading:
+              blank: "can not be blank."
+              already_exists: 'with the same name already exists.'
+        spending:
+          attributes:
+            amount:
+              blank: "can not be blank."
+  authentication:
+    form:
+      title: 'Spending counting app'
+      subtitle: 'Create an account with form below'
+      username: 'Username'
+      password: 'Password'
+      password_confirmation: 'Password confirmation'
+      create_account_button: 'Create an account'
+      have_an_account: 'Have an account?'
+      log_in: 'Log in'
+      new_user: 'New user?'
+      sign_up: 'Sign up now!'
+    errors:
+      not_logged_in: 'Please, log in or sign up.'
+      wrong_data: 'Incorrect login or(and) password.'
+    success:
+      logged_in: 'Successfully logged in.'
+      sign_up: 'You have successfully registered.'
+      logged_out: 'You have successfully logged out.'
+    info:
+      sign_up_invitation: 'Not registered yet? Create an account!'
+      already_logged_in: 'You are already logged in.'
+  category:
+    success:
+      created: 'Category was successfully created.'
+      updated: 'Category was successfully updated.'
+      destroyed: 'Category was destroyed.'
+    links:
+      edit: 'Edit'
+      destroy: 'Delete'
+      show: 'Show'
+    new:
+      title: 'Enter new category'
+    edit:
+      title: 'Edit category'
+  spending:
+    success:
+      created: 'Spending was successfully created.'
+      updated: 'Spending was successfully updated.'
+      destroyed: 'Spending was destroyed.'
+    links:
+      edit: 'Edit spending'
+      destroy: 'Delete spending'
+      show: 'Show spending'
+    new:
+      title: 'Enter new spending'
+    edit:
+      title: 'Edit spending'
+  user:
+    success:
+      updated: 'Your account was successfully updated.'
+      destroyed: 'Your account was destroyed.'
+    show:
+      title: 'My account'
+    edit:
+      title: 'Edit profile'
+  general:
+    back: 'Back'
+    to_categories_list: 'To categories list'

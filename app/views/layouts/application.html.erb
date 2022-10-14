@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EspensesAppNew</title>
+    <title>Expenses App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "true" %>
+    <%= javascript_tag %>
   </head>
 
   <body>
+  <div class="container">
+      <% if session[:user_id] %>
+        <ul class="shadow nav navbar navbar-light mb-5 p-4 rounded justify-content-md-around" style="background-color: #e3f2fd;">
+          <li class="nav-item">Hi, <%= current_user.username %></li>
+          <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Create spending', new_user_spending_path(current_user), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'My spendings', user_spendings_path(current_user), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Categories', categories_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-secondary' %></li>
+        </ul>
+      <% end %>
+
+    <% flash.each do |type, msg| %>
+      <div class="alert <%= bootstrap_class_for(type) %>" role="alert">
+        <%= msg %>
+      </div>
+    <% end %>
+
     <%= yield %>
+    </div>
   </body>
 </html>

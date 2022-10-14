@@ -1,0 +1,87 @@
+AllCops:
+  TargetRubyVersion: 3.1.2
+
+  NewCops: enable
+
+  Exclude:
+    - db/schema.rb
+    - bin/**/*
+    - vendor/**/*
+
+require:
+  - rubocop-rspec
+  - rubocop-rails
+  - rubocop-performance
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/SignalException:
+  Enabled: false
+
+# Metrics Cops
+
+Metrics/BlockLength:
+  AllowedMethods:
+    - context
+    - it
+    - describe
+    - post
+    - delete
+    - path
+    - RSpec.configure
+    - response
+    - factory
+    - define
+    - get
+    - put
+
+Metrics/ModuleLength:
+  Max: 100
+  Enabled: true
+
+Metrics/ParameterLists:
+  Max: 4
+  Enabled: true
+
+Metrics/MethodLength:
+  StyleGuide: "<https://github.com/bbatsov/ruby-style-guide#short-methods>"
+  Max: 10
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Rails/WhereExists:
+  EnforcedStyle: where
+
+Metrics/BlockLength:
+  Exclude:
+    - config/initializers/**/*
+
+Layout/LineLength:
+  Exclude:
+    - config/initializers/**/*
+
+# Rspec cops
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - spec/requests/**/*
+
+RSpec/VariableName:
+  Exclude:
+    - spec/requests/**/*
+
+Lint/MissingSuper:
+  Exclude:
+    - app/service/**
+
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+Lint/MissingSuper:
+  Exclude:
+    - app/services/**/*

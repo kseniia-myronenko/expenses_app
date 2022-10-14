@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-center p-3 mb-2 bg-light shadow pt-5">
+  <div class="col-6">
+   <h1 class="text-secondary mb-4"><%= I18n.t('authentication.form.log_in') %></h1>
+
+    <%= form_tag login_path do %>
+      <p style="color: #888;">Enter your username:</p>
+      <%= text_field_tag :username, "", class: 'form-control' %><br />
+      <p style="color: #888;">Enter your password:</p>
+      <%= password_field_tag :password, "", class: 'form-control' %><br />
+      <%= submit_tag I18n.t('authentication.form.log_in'), class: "btn btn-primary" %>
+    <% end %>
+
+    <p><%= I18n.t('authentication.form.new_user') %> <%= link_to I18n.t('authentication.form.sign_up'), signup_path %></p>
+  </div>
+</div>
