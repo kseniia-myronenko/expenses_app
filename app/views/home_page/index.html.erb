@@ -1,4 +1,30 @@
-<h1>My Spendings App</h1>
-<%= link_to 'Create spending', new_user_spending_path(current_user) %>
-<%= link_to 'Watch my spendings', user_spendings_path(current_user) %>
-<%= link_to 'Create category', new_category_path %>
+<h1 class='mb-5 text-secondary'>My Spendings App</h1>
+
+<div class="d-flex justify-content-md-around">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" style="padding: 20px;" src="images/wallet2.svg" alt="create spending">
+    <div class="card-body">
+      <h5 class="card-title">Create spending</h5>
+      <p class="card-text">You can enter amount, add description and choose category.</p>
+      <%= link_to 'Create spending', new_user_spending_path(current_user), class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" style="padding: 20px;" src="images/all_spendings.svg" alt="watch all spendings">
+    <div class="card-body">
+      <h5 class="card-title">Watch all spendings</h5>
+      <p class="card-text">Check all your spendings and sort by different params.</p>
+      <%= link_to 'Watch my spendings', user_spendings_path(current_user), class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" style="padding: 20px;" src="images/category.svg" alt="create category">
+    <div class="card-body">
+      <h5 class="card-title">Create category</h5>
+      <p class="card-text">Add more categories for your future spendings!</p>
+      <%= link_to 'Create category', new_category_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

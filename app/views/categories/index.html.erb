@@ -1,12 +1,25 @@
-<h1>Categories list</h1>
+<h1 class="text-secondary mb-4">Categories list</h1>
+<%= link_to 'Create new category', new_category_path, class: 'btn btn-primary mb-2 mb-4' %><br />
 
-<% @categories.each do |category| %>
-  <h3><%= category.heading %></h3>
-  <p><%= category.body %></p>
-
-  <%= link_to I18n.t('category.links.show'), category_path(category) %><br />
-  <%= link_to I18n.t('category.links.edit'), edit_category_path(category) %><br />
-  <%= button_to I18n.t('category.links.destroy'), category_path(category), method: :delete %>
-<% end %>
-
-<p><<<%= link_to I18n.t('general.back'), root_path %></p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th class="text-center">Heading</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+    <tr>
+      <td><h5 class="text-center" style="padding: 10px;"><%= category.heading %></h5></td>
+      <td><%= category.body %></td>
+      <td>
+        <%= link_to I18n.t('category.links.show'), category_path(category), class: 'btn btn-outline-secondary mb-2', style: 'display: block;' %>
+        <%= link_to I18n.t('category.links.edit'), edit_category_path(category), class: 'btn btn-outline-secondary mb-2', style: 'display: block;' %>
+        <%= button_to I18n.t('category.links.destroy'), category_path(category), method: :delete, class: 'btn btn-outline-danger', style: 'min-width: 100%;' %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

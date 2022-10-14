@@ -1,6 +1,7 @@
 class SpendingsController < AuthorizedController
   before_action :set_spending, except: %i[index new create]
   before_action :not_found, except: :index
+  before_action :set_categories, only: %i[new edit update create]
 
   def index
     @user = User.find(params[:user_id])
@@ -13,7 +14,7 @@ class SpendingsController < AuthorizedController
   def show; end
 
   def new
-    @spending = current_user.spendings.new
+    @spending = current_user.spendings.build
   end
 
   # rubocop:disable Metrics/AbcSize
@@ -25,7 +26,7 @@ class SpendingsController < AuthorizedController
       flash[:info] = I18n.t('spending.success.created')
       redirect_to user_spending_path(current_user, @spending)
     else
-      flash[:danger] = @spending.errors.full_messages.to_sentence
+      flash.now[:danger] = @spending.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -39,7 +40,7 @@ class SpendingsController < AuthorizedController
       flash[:info] = I18n.t('spending.success.updated')
       redirect_to user_spending_path(current_user, @spending)
     else
-      flash[:danger] = @spending.errors.full_messages.to_sentence
+      flash.now[:danger] = @spending.errors.full_messages.to_sentence
       render :edit
     end
   end
@@ -62,5 +63,9 @@ class SpendingsController < AuthorizedController
 
   def not_found
     render_not_found if User.find(params[:user_id]) != current_user
+  end
+
+  def set_categories
+    @categories = current_user.categories.pluck(:heading, :id)
   end
 end

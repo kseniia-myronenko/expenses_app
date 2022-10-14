@@ -23,7 +23,7 @@ class UsersController < AuthorizedController
       flash[:success] = I18n.t('authentication.success.sign_up')
       redirect_to root_path
     else
-      flash[:danger] = @user.errors.full_messages.to_sentence
+      flash.now[:danger] = @user.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -37,7 +37,7 @@ class UsersController < AuthorizedController
       redirect_to @user
       flash[:success] = I18n.t('user.success.updated')
     else
-      flash[:danger] = @user.errors.full_messages.to_sentence
+      flash.now[:danger] = @user.errors.full_messages.to_sentence
       render :edit
     end
   end
