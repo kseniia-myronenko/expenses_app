@@ -1,5 +1,7 @@
 module Spendings
   class SortService < ApplicationService
+    ATTRIBUTES = %w[asc desc].freeze
+
     def initialize(spendings, params)
       @spendings = spendings
       @params = params
@@ -12,7 +14,13 @@ module Spendings
     private
 
     def sorting
-      @spendings = @params[:sort] ? @spendings.order(amount: @params[:sort]) : @spendings
+      if @params[:sort] && ATTRIBUTES.include?(@params[:sort].downcase)
+        @spendings = @spendings.order(amount: @params[:sort])
+      else
+        @spendings
+      end
+
+      @spendings
     end
   end
 end
