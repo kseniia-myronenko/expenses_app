@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :category do
     association :user, factory: :user
     heading { FFaker::Name.unique.first_name }
-    body { FFaker::HipsterIpsum.sentence }
+    body { FFaker::Lorem.paragraph }
     display { FFaker::Boolean.random }
 
     trait :empty_heading do
