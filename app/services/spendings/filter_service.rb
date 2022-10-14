@@ -2,6 +2,7 @@ module Spendings
   class FilterService < ApplicationService
     def initialize(params, user)
       @params = params
+      @user = user
       @spendings = user.spendings.all
     end
 
@@ -32,7 +33,7 @@ module Spendings
 
     def filter_by_category
       if @params[:category].present?
-        category = Category.find_by(heading: @params[:category])
+        category = Category.where(user_id: @user.id).find_by(heading: @params[:category])
         @spendings = @spendings.where(category_id: category.id)
       else
         @spendings

@@ -13,7 +13,7 @@
     <% @categories.each do |category| %>
     <tr>
       <td><h5 class="text-center" style="padding: 10px;"><%= category.heading %></h5></td>
-      <td><%= category.body %></td>
+      <td style="width: 60%;"><%= category.body %></td>
       <td>
         <%= link_to I18n.t('category.links.show'), category_path(category), class: 'btn btn-outline-secondary mb-2', style: 'display: block;' %>
         <%= link_to I18n.t('category.links.edit'), edit_category_path(category), class: 'btn btn-outline-secondary mb-2', style: 'display: block;' %>

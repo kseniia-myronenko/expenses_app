@@ -3,7 +3,7 @@ FactoryBot.define do
     association :user, factory: :user
     association :category, factory: :category
     amount { FFaker::Number.decimal }
-    description { FFaker::HipsterIpsum.sentence }
+    description { FFaker::Lorem.paragraph }
 
     trait :empty_amount do
       amount { nil }

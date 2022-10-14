@@ -1,5 +1,6 @@
 class CategoriesController < AuthorizedController
   before_action :set_category, except: %i[index new create]
+  skip_before_action :check_user
 
   def index
     @categories = current_user.categories
