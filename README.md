@@ -32,7 +32,7 @@ rails db:seed
 </ol>
 <h2>Use case</h2>
 <ol>
-<li>If you want to watch account with predefined data, run <code>rails db:seed</code>.<br> Login to the system with credentials  <code>Dave19</code> ans password <code>pa$$word</code>. You can also sign up to the system with your own credentials, but there will be no predefined categories as there is possibility for users to create their own categories.</li>
+<li>If you want to watch account with predefined data, run <code>rails db:seed</code>.<br> Login to the system with credentials  <code>Dave19</code> and <code>pa$$word</code>. You can also sign up to the system with your own credentials, but there will be no predefined categories as there is possibility for users to create their own categories.</li>
 <li>Start server  <code>rails s</code></li>
 <li>Go to <code>localhost:3000</code></li>
 <li>Log in or sign up to the system.</li>
