@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+  LIMIT = 3
+
   belongs_to :user
   has_many :spendings, dependent: :destroy
 

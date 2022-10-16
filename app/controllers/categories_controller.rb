@@ -3,7 +3,8 @@ class CategoriesController < AuthorizedController
   skip_before_action :check_user
 
   def index
-    @categories = current_user.categories
+    @page = params[:page].to_i
+    @categories = current_user.categories.offset(@page * Category::LIMIT).limit(Category::LIMIT)
   end
 
   def show; end

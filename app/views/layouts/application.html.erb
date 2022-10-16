@@ -12,7 +12,7 @@
   <body>
   <div class="container">
       <% if session[:user_id] %>
-        <ul class="shadow nav navbar navbar-light mb-5 p-4 rounded justify-content-md-around" style="background-color: #e3f2fd;">
+        <ul class="shadow nav navbar navbar-light mb-5 p-4 rounded-bottom justify-content-md-around" style="background-color: #e3f2fd;">
           <li class="nav-item">Hi, <%= current_user.username %></li>
           <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'Create spending', new_user_spending_path(current_user), class: 'nav-link' %></li>

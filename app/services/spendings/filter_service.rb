@@ -33,8 +33,8 @@ module Spendings
 
     def filter_by_category
       if @params[:category].present?
-        category = Category.where(user_id: @user.id).find_by(heading: @params[:category])
-        @spendings = @spendings.where(category_id: category.id)
+        categories = Category.where(user_id: @user.id).and(Category.where(heading: @params[:category]))
+        @spendings = @spendings.where(category_id: categories.ids)
       else
         @spendings
       end

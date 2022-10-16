@@ -5,7 +5,7 @@ class SpendingsController < AuthorizedController
 
   def index
     @user = User.find(params[:user_id])
-    @categories = @user.categories.pluck(:heading)
+    @categories = @user.categories.all
     @spendings = Spendings::FilterService.call(params, @user)
     @spendings = Spendings::SortService.call(@spendings, params)
     @total = @spendings.sum(&:amount)

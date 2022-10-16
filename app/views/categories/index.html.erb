@@ -23,3 +23,10 @@
     <% end %>
   </tbody>
 </table>
+
+<% if @page <= 0 %>
+  <%= link_to 'Prev', categories_path(page: 0), class: 'btn btn-outline-primary' %>
+<% else %>
+  <%= link_to 'Prev', categories_path(page: @page - 1), class: 'btn btn-outline-primary' %>
+<% end %>
+| <%= link_to 'Next', categories_path(page: @page + 1), class: 'btn btn-outline-primary' %>

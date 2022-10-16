@@ -3,10 +3,12 @@
 <p class="mb-5"><span class="shadow border border-primary rounded-bottom p-2">Total amount: <b class="text-primary"><%= @total %></b></span></p>
 
 <div class="col-6" style="margin-bottom: 25px;">
-<%= form_with url: user_spendings_path(@user), method: :get do |f| %>
+<%= form_with url: user_spendings_path(@user), method: :get, remote: true, id: 'filter-form', onchange: "this.form.submit()" do |f| %>
   <div class="mb-4">
-    <%= f.label :category, 'Category:' %>
-    <%= f.select :category, options_for_select(@categories), { include_blank: true }, { class: 'form-select', style: "max-width: 52%;" } %>
+    <%= f.label :category, 'Categories:', style: "font-weight: 600;" %><br />
+    <%= f.collection_check_boxes(:category, @categories, :heading, :heading) do |item| %>
+      <%= item.label(class:"label-checkbox") { item.check_box + item.text } %><br />
+    <% end %>
   </div>
   <div class="d-flex">
     <p style="margin-right: 10px; max-width: 25%;"><%= f.label :min, 'Min amount' %>: <%= f.number_field :min, min: 0, class: 'form-control' %></p>
